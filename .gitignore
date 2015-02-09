@@ -2,7 +2,7 @@ js/bower_components/
 php/vendor/
 
 
-# GENERALES
+# GENERAL
 
 *.smbdelete*
 Thumbs.db
