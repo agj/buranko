@@ -1,0 +1,19 @@
+{
+  "name": "buranko",
+  "version": "0.0.0",
+  "authors": [
+    "agj <ale@agj.cl>"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ramda": "~0.9.1",
+    "qwest": "~1.5.4"
+  }
+}

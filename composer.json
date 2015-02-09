@@ -1,0 +1,15 @@
+{
+    "name": "agj/buranko",
+    "authors": [
+        {
+            "name": "agj",
+            "email": "ale@agj.cl"
+        }
+    ],
+    "config": {
+        "vendor-dir": "php/vendor/"
+    },
+    "require": {
+        "corbanb/freebird-php": "0.2.*"
+    }
+}

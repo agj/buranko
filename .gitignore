@@ -1,0 +1,11 @@
+js/bower_components/
+php/vendor/
+
+
+# GENERALES
+
+*.smbdelete*
+Thumbs.db
+npm-debug.log
+stacktrace-*.log
+.DS_Store
