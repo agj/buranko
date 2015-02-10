@@ -10,8 +10,6 @@ require.config({
 	},
 });
 
-console.log('yeah');
-
 require(['app']);
 
 

@@ -1,4 +1,8 @@
 
-<div class="text">
-	{{ text }}
+<div
+	class="tweet"
+	v-style="
+		transform: transform(total / $index)
+	">
+	<div class="text">{{ $index + ' ' + total }}</div>
 </div>

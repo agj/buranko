@@ -4,15 +4,19 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Buranko</title>
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 	<div id="content">
 
-		<template
-			v-repeat="tweets"
-			v-component="tweet">
-		</template>
+		<div class="swing">
+			<template
+				v-repeat="tweets"
+				v-component="tweet"
+				v-with="total: tweets.length">
+			</template>
+		</div>
 
 	</div>
 
