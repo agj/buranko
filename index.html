@@ -1,18 +1,22 @@
+<!DOCTYPE html>
+
 <html>
 <head>
 	<meta charset="utf-8" />
 	<title>Buranko</title>
-
-	<script src="js/bower_components/ramda/dist/ramda.min.js"></script>
-	<script src="js/bower_components/qwest/qwest.min.js"></script>
-
-	<script src="js/script.js"></script>
 </head>
 <body>
 
 	<div id="content">
 
+		<template
+			v-repeat="tweets"
+			v-component="tweet">
+		</template>
+
 	</div>
+
+	<script data-main="js/main" src="js/bower_components/requirejs/require.js"></script>
 
 </body>
 </html>
