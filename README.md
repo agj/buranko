@@ -1,7 +1,10 @@
+
 Buranko
 =======
 
-My attempt for the assignment part of the application tests for the New Media program, of the Graduate School of Film and New Media, Tokyo University of the Arts. Inspired by Arakawa Youji's poem Gallery.
+My attempt for the assignment part of the application tests for the New Media program, of the Graduate School of Film and New Media, Tokyo University of the Arts. Inspired by Arakawa Youji's poem _Gallery_　(ギャラリー).
+
+See it in action at: http://www.agj.cl/files/interactive/buranko/
 
 
 ## License
