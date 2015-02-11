@@ -2,7 +2,7 @@
 
 $queries = array(
 	// 'failure',
-	'failure OR ashamed OR fear',
+	'failure OR ashamed OR afraid',
 );
 
 
