@@ -34,6 +34,7 @@ define( function (require) {
 	});
 
 	var log = console.log.bind(console);
+	var event = Bacon.fromEventTarget;
 
 
 	// Preparation.
@@ -53,9 +54,12 @@ define( function (require) {
 
 	// Reactivity.
 
-	var swung = Bacon.fromEventTarget(app.$$.swing, 'animationiteration');
+	var swung =
+		event(app.$$.swing, 'animationiteration')
+		.merge(event(app.$$.swing, 'webkitAnimationIteration'));
 
-	var rawTweets = Bacon.fromPromise(qwest.get('php/tweets.php' + (debug ? '?debug' : ''), '', { responseType: 'json' }))
+	var rawTweets =
+		Bacon.fromPromise(qwest.get('php/tweets.php' + (debug ? '?debug' : ''), '', { responseType: 'json' }))
 		.map(R.prop('statuses'))
 		.toProperty();
 
