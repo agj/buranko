@@ -6,11 +6,42 @@ define( function (require) {
 	var R = require('ramda');
 	var Bacon = require('bacon');
 
+
+	// Components require.
+
 	require('components/tweet/script');
 
-	Vue.config.debug = true;
+
+	// Utils.
+
+	function fixRawTweet(tweet, index, tweets) {
+		return {
+			text: tweet.text,
+			position: index / (showTotal - 1),
+		}
+	}
+
+	var grab = R.curry( function (amount, list) {
+		var r = [];
+		var len = list.length;
+		var i = 0;
+		while (i < amount) {
+			var rand = Math.floor(Math.random() * len);
+			r[i] = list[rand]
+			i++;
+		}
+		return r;
+	});
 
 	var log = console.log.bind(console);
+
+
+	// Preparation.
+
+	var showTotal = 10;
+
+	var debug = location.search === '?debug';
+	Vue.config.debug = debug;
 
 	var app = new Vue({
 		el: '#content',
@@ -19,36 +50,29 @@ define( function (require) {
 		},
 	});
 
-	var showTotal = 15;
 
-	var tweets = Bacon.fromPromise(qwest.get('php/tweets.php?debug', '', { responseType: 'json' }))
-		.map(R.prop('statuses'))
-		.map( function (rawTweets) {
-			return rawTweets.map(fixRawTweet);
-		})
-		.flatMap(Bacon.fromArray)
-		.slidingWindow(showTotal, showTotal)
-		.take(1);
+	// Reactivity.
 
 	var swung = Bacon.fromEventTarget(app.$$.swing, 'animationiteration');
-	swung.log('swung');
 
-	tweets.onError(console.error.bind(console));
+	var rawTweets = Bacon.fromPromise(qwest.get('php/tweets.php' + (debug ? '?debug' : ''), '', { responseType: 'json' }))
+		.map(R.prop('statuses'))
+		.toProperty();
+
+	var update = swung.merge(rawTweets.changes());
+
+	var tweets =
+		rawTweets.sampledBy(update)
+		.filter(R.identity)
+		.map(grab(showTotal))
+		.map( function (rawTweets) {
+			return rawTweets.map(fixRawTweet);
+		});
+
 	tweets.onValue( function (tweets) {
-		log('onValue', tweets);
 		app.tweets = tweets;
 	});
 
-
-	function fixRawTweet(tweet, index, tweets) {
-		log('fixRawTweet', tweet, index, tweets);
-		return {
-			text: tweet.text,
-			index: index,
-			// total: tweets.length,
-			total: showTotal,
-		}
-	}
 
 });
 

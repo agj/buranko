@@ -9,8 +9,6 @@ define( function (require) {
 		template: html,
 		methods: {
 			transform: function (position) {
-				console.log(position);
-				// var pos = Math.random() * 180 - 90;
 				var pos = 180 * position - 90;
 				var transforms = [
 					'rotateX(' + pos + 'deg)',
