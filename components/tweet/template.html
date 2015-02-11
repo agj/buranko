@@ -2,7 +2,7 @@
 <div
 	class="tweet"
 	v-style="
-		transform: transform(total / $index)
+		transform: transform(index / total)
 	">
-	<div class="text">{{ $index + ' ' + total }}</div>
+	<div class="text">{{ text }}</div>
 </div>

@@ -4,7 +4,8 @@ $queries = array(
 	'failure',
 );
 
-$debug = in_array('debug', $_REQUEST);
+
+$debug = array_key_exists('debug', $_REQUEST);
 
 
 if (!$debug) {

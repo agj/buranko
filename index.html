@@ -9,15 +9,15 @@
 <body>
 
 	<div id="content">
-
-		<div class="swing">
-			<template
-				v-repeat="tweets"
-				v-component="tweet"
-				v-with="total: tweets.length">
-			</template>
+		<div id="camera">
+			<div class="swing" v-el="swing">
+				<template
+					v-repeat="tweets"
+					v-component="tweet"
+					>
+				</template>
+			</div>
 		</div>
-
 	</div>
 
 	<script data-main="js/main" src="js/bower_components/requirejs/require.js"></script>

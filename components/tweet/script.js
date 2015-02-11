@@ -7,11 +7,6 @@ define( function (require) {
 
 	Vue.component('tweet', {
 		template: html,
-		data: function () {
-			return {
-				datos: { },
-			};
-		},
 		methods: {
 			transform: function (position) {
 				console.log(position);

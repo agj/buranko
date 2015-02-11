@@ -1,23 +1,30 @@
 
 body {
 	background-color: #eee;
+	overflow: hidden;
 }
 
 #content {
 	width: 100%;
-	perspective: 2000px;
+	perspective: 1000px;
+}
+
+#camera {
+	transform-style: preserve-3d;
+	transform:
+		rotateY(15deg)
+		translate3d(-100px, -450px, 720px);
 }
 
 .swing {
 	position: absolute;
 	width: 0;
 	left: 50%;
-	top: -250px;
 	transform-style: preserve-3d;
 	transform-origin: top center;
 
 	animation-name: oscillate;
-	animation-duration: 4s;
+	animation-duration: 12s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: infinite;
 	animation-direction: alternate;
@@ -26,10 +33,13 @@ body {
 .tweet {
 	position: absolute;
 	width: 28em;
+	height: 4em;
 	left: -14em;
+	// margin: 0.2em;
+	transform-origin: top center;
 
-	border: solid 1px gray;
-	background-color: tomato;
+	// border: solid 1px gray;
+	// background-color: tomato;
 	margin: 0 auto;
 
 	&.text {
@@ -39,9 +49,13 @@ body {
 
 @keyframes oscillate {
 	from {
-		transform: rotateX(-45deg);
+		transform:
+			rotateX(-115deg)
+			;
 	}
 	to {
-		transform: rotateX(45deg);
+		transform:
+			rotateX(114deg)
+			;
 	}
 }
