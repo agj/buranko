@@ -1,7 +1,8 @@
 <?php
 
 $queries = array(
-	'failure',
+	// 'failure',
+	'failure OR ashamed OR fear',
 );
 
 
