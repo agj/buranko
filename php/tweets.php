@@ -11,9 +11,10 @@ $debug = array_key_exists('debug', $_REQUEST);
 
 if (!$debug) {
 	require_once 'vendor/autoload.php';
+    require_once 'twitterkey.php';
 
 	$twitter = new Freebird\Services\freebird\Client();
-	$twitter->init_bearer_token('St1tlRrUKUevgZqtm2Z5LYUFL', 'rYTOPDTjCJGYpYuCLCbLpKufDl4r6oayGFA3tXSiOh3EwzogkF');
+	$twitter->init_bearer_token($twitterKey['key'], $twitterKey['secret']);
 
 
 	$query = $queries[array_rand($queries)];
