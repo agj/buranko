@@ -109,3 +109,60 @@ a {
 	text-decoration: none;
 }
 
+
+#message {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	-webkit-perspective: 1610px;
+	        perspective: 1610px;
+
+	text-align: center;
+
+	.loading {
+		-webkit-transform-origin: center -160px 0px;
+		        transform-origin: center -160px 0px;
+
+		-webkit-animation-name: tinyswing;
+		        animation-name: tinyswing;
+		-webkit-animation-duration: 0.5s;
+		        animation-duration: 0.5s;
+		-webkit-animation-timing-function: ease-in-out;
+		        animation-timing-function: ease-in-out;
+		-webkit-animation-iteration-count: infinite;
+		        animation-iteration-count: infinite;
+		-webkit-animation-direction: alternate;
+		        animation-direction: alternate;
+	}
+
+	.error {
+	}
+}
+
+@-webkit-keyframes tinyswing {
+	from {
+		-webkit-transform: rotateX(-30deg);
+		        transform: rotateX(-30deg);
+	}
+	to {
+		-webkit-transform: rotateX(30deg);
+		        transform: rotateX(30deg);
+	}
+}
+
+@keyframes tinyswing {
+	from {
+		-webkit-transform: rotateX(-30deg);
+		        transform: rotateX(-30deg);
+	}
+	to {
+		-webkit-transform: rotateX(30deg);
+		        transform: rotateX(30deg);
+	}
+}
+
+
+[v-cloak] {
+	display: none;
+}
+

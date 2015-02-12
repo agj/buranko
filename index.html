@@ -20,6 +20,15 @@
 		</div>
 	</div>
 
+	<div id="message" v-cloak>
+		<div class="loading" v-show="loading && !error">
+			Loading...
+		</div>
+		<div class="error" v-show="error">
+			Data could not be loaded. Try refreshing.
+		</div>
+	</div>
+
 	<div id="credits">
 		<a href="http://blog.agj.cl/tag/buranko/"><strong>Buranko</strong>, by agj.</a>
 	</div>

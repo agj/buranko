@@ -45,9 +45,11 @@ define( function (require) {
 	Vue.config.debug = debug;
 
 	var app = new Vue({
-		el: '#content',
+		el: 'body',
 		data: {
 			tweets: [],
+			loading: true,
+			error: false,
 		},
 	});
 
@@ -58,8 +60,10 @@ define( function (require) {
 		event(app.$$.swing, 'animationiteration')
 		.merge(event(app.$$.swing, 'webkitAnimationIteration'));
 
+	var tweetSource = Bacon.fromPromise(qwest.get('php/tweets.php' + (debug ? '?debug' : ''), '', { responseType: 'json' }));
+
 	var rawTweets =
-		Bacon.fromPromise(qwest.get('php/tweets.php' + (debug ? '?debug' : ''), '', { responseType: 'json' }))
+		tweetSource
 		.map(R.prop('statuses'))
 		.toProperty();
 
@@ -76,6 +80,18 @@ define( function (require) {
 	tweets.onValue( function (tweets) {
 		app.tweets = tweets;
 	});
+
+	tweets
+	.take(1)
+	.onValue( function () {
+		log('loaded');
+		app.loading = false;
+	});
+
+	tweetSource.onError( function () {
+		log('error');
+		app.error = true;
+	})
 
 
 });
