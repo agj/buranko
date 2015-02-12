@@ -60,7 +60,18 @@ define( function (require) {
 		event(app.$$.swing, 'animationiteration')
 		.merge(event(app.$$.swing, 'webkitAnimationIteration'));
 
-	var tweetSource = Bacon.fromPromise(qwest.get('php/tweets.php' + (debug ? '?debug' : ''), '', { responseType: 'json' }));
+	var tweetSource = Bacon.fromBinder( function (sink) {
+		var request = qwest.get('php/tweets.php' + (debug ? '?debug' : ''), '', { responseType: 'json' });
+		request.then( function (result) {
+			sink(result);
+			sink(new Bacon.End());
+		});
+		request.catch( function (error) {
+			sink(new Bacon.Error(error));
+			sink(new Bacon.End());
+		});
+		return function unsub() { };
+	});
 
 	var rawTweets =
 		tweetSource
@@ -84,12 +95,10 @@ define( function (require) {
 	tweets
 	.take(1)
 	.onValue( function () {
-		log('loaded');
 		app.loading = false;
 	});
 
 	tweetSource.onError( function () {
-		log('error');
 		app.error = true;
 	})
 
